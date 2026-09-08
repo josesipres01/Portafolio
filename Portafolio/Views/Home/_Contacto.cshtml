@@ -1,0 +1,87 @@
+@* Partial: sección Contacto reutilizable *@
+
+<style>
+    /* Estilos mágicos para los cuadros de texto (Inputs) */
+    .input-contacto {
+        background-color: rgba(255, 255, 255, 0.04) !important; /* Fondo casi transparente */
+        border: 1px solid rgba(255, 255, 255, 0.1) !important; /* Borde muy sutil */
+        color: #ffffff !important; /* Texto blanco al escribir */
+    }
+
+        /* Color del texto de pista (placeholder) */
+        .input-contacto::placeholder {
+            color: rgba(255, 255, 255, 0.4) !important;
+        }
+
+        /* Efecto al hacer clic en el cuadro de texto */
+        .input-contacto:focus {
+            background-color: rgba(255, 255, 255, 0.08) !important;
+            border-color: #ffd166 !important; /* Borde amarillo al seleccionarlo */
+            box-shadow: 0 0 0 0.2rem rgba(255, 209, 102, 0.2) !important; /* Resplandor amarillo */
+            color: #ffffff !important;
+        }
+</style>
+
+<!-- Se quitó el background duro y se dejó transparente -->
+<div id="contacto" style="background: transparent; color:#fff; padding:40px 0 40px; margin-top:40px;">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-12 col-md-8">
+                <h2 style="font-size:36px;font-weight:700;margin:0 0 12px;color:#ffffff;">Contacto</h2>
+                <div style="width:100px;height:3px;background:rgba(230,238,248,0.12);margin-bottom:14px;border-radius:2px;"></div>
+            </div>
+            <div class="col-12 col-md-4 text-md-end" style="align-self:center;">
+                <small style="letter-spacing:1px;opacity:0.9;color:rgba(230,238,248,0.8);">Escríbeme directamente</small>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-12 col-md-5">
+                <div class="contact-card" style="color:#e6eef8;">
+                    <h5 style="margin-top:0;color:#fff;">Información de contacto</h5>
+                    <p style="margin:.25rem 0;"><i class="bi bi-envelope-fill" style="margin-right:8px;color:#ffd166;"></i><a href="mailto:josesipres1@outlook.com" style="color:#fff;text-decoration:none;">josesipres1@outlook.com</a></p>
+                    <p style="margin:.25rem 0;"><i class="bi bi-linkedin" style="margin-right:8px;color:#0e76a8;"></i><a href="https://www.linkedin.com/in/jos%C3%A9-guadalupe-venegas-sipres-338270359" target="_blank" rel="noopener" style="color:#fff;text-decoration:none;">LinkedIn</a></p>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-7 mt-3 mt-md-0">
+                <div class="contact-card" style="color:#e6eef8;">
+                    <h5 style="margin-top:0;color:#fff; margin-bottom: 15px;">Enviar mensaje</h5>
+                    <form onsubmit="sendContactEmail(event)" class="row g-3">
+                        <div class="col-12 col-md-6">
+                            <!-- Se agregó la clase input-contacto -->
+                            <input id="contact-name" class="form-control input-contacto" type="text" placeholder="Tu nombre" required />
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <!-- Se agregó la clase input-contacto -->
+                            <input id="contact-email" class="form-control input-contacto" type="email" placeholder="Tu correo" required />
+                        </div>
+                        <div class="col-12">
+                            <!-- Se agregó la clase input-contacto -->
+                            <textarea id="contact-message" class="form-control input-contacto" rows="4" placeholder="Escribe tu mensaje..." required></textarea>
+                        </div>
+                        <div class="col-12 d-flex justify-content-end mt-3">
+                            <!-- Botón ajustado a tu color mostaza para que combine -->
+                            <button type="submit" class="btn" style="background:#ffd166; color:#1a1e23; font-weight: 600; border-radius:4px; padding:8px 20px;">
+                                <i class="bi bi-send-fill me-2"></i> Enviar al correo
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function sendContactEmail(event) {
+        event.preventDefault();
+        var name = document.getElementById('contact-name').value || '';
+        var from = document.getElementById('contact-email').value || '';
+        var message = document.getElementById('contact-message').value || '';
+        var subject = encodeURIComponent('Contacto desde portafolio: ' + name);
+        var body = encodeURIComponent(message + '\n\n--\nDesde: ' + name + ' <' + from + '>');
+        var mailto = 'mailto:josesipres1@outlook.com?subject=' + subject + '&body=' + body;
+        window.location.href = mailto;
+    }
+</script>
